@@ -1,15 +1,15 @@
+//player variables
 var playerName = window.prompt("Name Your Mech");
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-console.log(playerName, playerHealth, playerAttack);
-
-var enemyName = "Mecha Balrog";
+// enemy variables
+var enemyNames = ["Mr. Roboto","Mecha Balrog","Cyber Karen"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-var fight = function() {
+var fight = function(enemyName) {
     //Alert all players that they are starting a new round
     window.alert("Welcome Mech Fighters!");
     var promptFight = window.prompt("Do you have the GEARS to be the ultimate Mecha!?")
@@ -65,4 +65,19 @@ var fight = function() {
     }
 };
 //Execute Function
-fight();
+
+for(var i =0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
+
+// var enemyNames = ["Mr.Roboto", "Zerg", "Cyber Karen"];
+// console.log(enemyNames[0]);
+// console.log(enemyNames[1]);
+// console.log(enemyNames[2]);
+// console.log(enemyNames.length);
+
+// for(var i = 0; i < enemyNames.length; i++) {
+//     console.log(enemyNames[i]);
+//     console.log(i);
+//     console.log(enemyNames[i] + " is at " + i + " index");
+// }
