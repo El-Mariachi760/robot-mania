@@ -11,8 +11,23 @@ var enemyAttack = 12;
 
 var fight = function(enemyName) {
     //Alert all players that they are starting a new round
-    window.alert("Welcome Mech Fighters!");
-    var promptFight = window.prompt("Do you have the GEARS to be the ultimate Mecha!?")
+    while(playerHealth > 0 && enemyHealth > 0) {
+    var promptFight = window.prompt("Do you have the GEARS to be the ultimate Mecha!? Enter 'YES' or 'NO'");
+
+    // if player choses to skip
+    if (promptFight === "no" || promptFight === "NO") {
+        //confirm player wants to skip
+       var confirmSkip = window.confirm("Are you sure you want to be a human about it?");
+
+        //if yes (true), leave fight
+        if (confirmSkip) {
+            window.alert(playerName + " is a typical human. BYE LOSER");
+            // subtract money from playerMoney for skipping
+            playerMoney = playerMoney - 10;
+            console.log("playerMoney", playerMoney);
+            break;
+        }
+    }
 
     // if player chooses to fight
     if (promptFight === "YES" || promptFight === "yes"){
@@ -25,12 +40,15 @@ var fight = function(enemyName) {
     // check enemy's health
     if (enemyHealth <=0) {
         window.alert(enemyName + " is now a pile of junk!")
-    }
-    else {
+        // award player for winning round
+        playerMoney = playerMoney + 20
+        // leave while() loop since enemy is dead
+        break;
+    }   else {
         window.alert(enemyName + " still has " + enemyHealth + " health left.")
     }
 
-    // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
+    // remove player's health by subtracting the amount set in the enemyAttack variable
     playerHealth = playerHealth - enemyAttack;
     console.log(
         enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
@@ -38,35 +56,25 @@ var fight = function(enemyName) {
     
     // check player's health
     if (playerHealth <=0) {
-        window.alert(playerName + " is now recycled!")
+        window.alert(playerName + " is now in the recycling bin!")
+        break;
+    }   else {
+        window.alert(playerName + " still has " + playerHealth + " health left.");
     }
-    else {
-        window.alert(playerName + " still has " + playerHealth + " health left.")
-    }
-    
-    // if player choses to skip
-    } else if (promptFight === "no" || promptFight === "NO") {
-        //confirm player wants to skip
-        window.confirm("Are you sure you want to be a human about it?");
-
-        //if yes (true), leave fight
-        var confirmSkip = true;
-        if (confirmSkip) {
-            window.alert(playerName + " is a typical human. BYE LOSER");
-            // subtract money from playerMoney for skipping
-            playerMoney = playerMoney - 2;
-        }
-        // if no (false), ask question again by running fight() again
-        else {
-            fight();
-        }
-    } else {
-        window.alert("You need to choose a 'Yes' or 'No'")
-    }
+    }}
 };
+//         // if no (false), ask question again by running fight() again
+//         else {
+//             fight();
+//         } else {
+//         window.alert("You need to choose a 'Yes' or 'No'")
+//     }}
+// };
 //Execute Function
 
 for(var i =0; i < enemyNames.length; i++) {
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
     fight(enemyNames[i]);
 }
 
