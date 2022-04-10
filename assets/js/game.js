@@ -13,7 +13,20 @@ var fight = function(enemyName) {
     //Alert all players that they are starting a new round
     while(playerHealth > 0 && enemyHealth > 0) {
     var promptFight = window.prompt("Do you have the GEARS to be the ultimate Mecha!? Enter 'YES' or 'NO'");
+    if (playerHealth > 0) {
+        window.alert("Welcome to Robot-Mainia! Round " + (i+1));
+        //pick new enemy
+        var pickedEnemyName = enemyNames[i];
 
+        // reset enemy health before round
+        enemyHealth = 50;
+
+        fight(pickedEnemyName);
+       
+    } else {
+            window.alert("You are a pile of junk! GAME OVER!");
+            break;
+        }
     // if player choses to skip
     if (promptFight === "no" || promptFight === "NO") {
         //confirm player wants to skip
@@ -63,13 +76,7 @@ var fight = function(enemyName) {
     }
     }}
 };
-//         // if no (false), ask question again by running fight() again
-//         else {
-//             fight();
-//         } else {
-//         window.alert("You need to choose a 'Yes' or 'No'")
-//     }}
-// };
+
 //Execute Function
 
 for(var i =0; i < enemyNames.length; i++) {
@@ -78,14 +85,3 @@ for(var i =0; i < enemyNames.length; i++) {
     fight(enemyNames[i]);
 }
 
-// var enemyNames = ["Mr.Roboto", "Zerg", "Cyber Karen"];
-// console.log(enemyNames[0]);
-// console.log(enemyNames[1]);
-// console.log(enemyNames[2]);
-// console.log(enemyNames.length);
-
-// for(var i = 0; i < enemyNames.length; i++) {
-//     console.log(enemyNames[i]);
-//     console.log(i);
-//     console.log(enemyNames[i] + " is at " + i + " index");
-// }
