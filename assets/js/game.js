@@ -13,21 +13,9 @@ var fight = function(enemyName) {
     //Alert all players that they are starting a new round
     while(playerHealth > 0 && enemyHealth > 0) {
     var promptFight = window.prompt("Do you have the GEARS to be the ultimate Mecha!? Enter 'YES' or 'NO'");
-    if (playerHealth > 0) {
-        window.alert("Welcome to Robot-Mainia! Round " + (i+1));
-        //pick new enemy
-        var pickedEnemyName = enemyNames[i];
-
-        // reset enemy health before round
-        enemyHealth = 50;
-
-        fight(pickedEnemyName);
-       
-    } else {
-            window.alert("You are a pile of junk! GAME OVER!");
-            break;
-        }
-    // if player choses to skip
+    
+    
+        // if player choses to skip
     if (promptFight === "no" || promptFight === "NO") {
         //confirm player wants to skip
        var confirmSkip = window.confirm("Are you sure you want to be a human about it?");
@@ -41,9 +29,6 @@ var fight = function(enemyName) {
             break;
         }
     }
-
-    // if player chooses to fight
-    if (promptFight === "YES" || promptFight === "yes"){
 
     //Subtract the value of 'playerAttack' from the value of 'enemyHealth' and use the result to update the value in the 'enemyHealth' variable
     enemyHealth = enemyHealth - playerAttack;
@@ -74,14 +59,61 @@ var fight = function(enemyName) {
     }   else {
         window.alert(playerName + " still has " + playerHealth + " health left.");
     }
-    }}
+    }
 };
 
 //Execute Function
 
-for(var i =0; i < enemyNames.length; i++) {
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth = 50;
-    fight(enemyNames[i]);
-}
 
+var startGame = function() {
+
+    // reset player stats
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
+
+    for (var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0) {
+                window.alert("Welcome to Robot-Mainia! Round " + ( i + 1 ) );
+                //pick new enemy
+                var pickedEnemyName = enemyNames[i];
+
+                // reset enemy health before round
+                enemyHealth = 50;
+
+                fight(pickedEnemyName);
+            } 
+        else {
+            window.alert("You are a pile of junk! GAME OVER!");
+            break;       
+            }
+        }
+  
+        var endGame = function() {
+            // if player is still alive, player wins!
+            if (playerHealth > 0) {
+                window.alert("I guess you're not human after all, you are the Mech Master!")
+            }
+            else {
+                window.alert("You fight like a human, no wonder you are a pile of junk.")
+            }
+            var playAgainConfirm = window.confirm("Would you like to play again?");
+        
+            if (playAgainConfirm) {
+                //restart the game
+                startGame();
+            }
+            else {
+                window.alert("Of couse you give up, you might as well be a human")
+            }
+        }
+        
+        endGame();
+    };
+startGame();
+
+// for(var i =0; i < enemyNames.length; i++) {
+//     var pickedEnemyName = enemyNames[i];
+//     enemyHealth = 50;
+//     fight(enemyNames[i]);
+// }
