@@ -82,6 +82,17 @@ var startGame = function() {
                 enemyHealth = 50;
 
                 fight(pickedEnemyName);
+
+                if (playerHealth > 0 && i < enemyNames.length -1) {
+
+                    //ask if player wants more health or dmg
+                    var storeConfirm = window.confirm("You survived, want to grease your gears?")
+
+                    if (storeConfirm){
+                    
+                    shop();
+                    }
+                }
             } 
         else {
             window.alert("You are a pile of junk! GAME OVER!");
@@ -109,6 +120,45 @@ var startGame = function() {
         }
         
         endGame();
+
+    }
+    var shop = function() {
+        //ask player that they would like
+
+        var shopOptionPrompt = window.prompt(
+            "How about OIL for the rusty parts, UPGRADE to your attack, or LEAVE if you are don't need anything? Please enter 'OIL', 'UPGRADE' or 'LEAVE'"
+        );
+
+        switch (shopOptionPrompt) {
+            case "OIL":
+            case 'oil':
+                if (playerMoney >= 7) {
+                    window.alert("Oil increased your health by 20 for 7 dollars.")
+                    playerHealth = playerHealth + 20;
+                    playerMoney = playerMoney - 7;
+                    break;
+                }
+            case "UPGRADE":
+            case "upgrade":
+                if (playerMoney >= 7) {
+                    window.alert("Your attack increased by 6 for 7 dollars.")
+                    playerAttack = playerAttack + 6
+                    playerMoney = playerMoney - 7
+                    break;
+                }
+
+            case "LEAVE":
+            case "leave":
+                window.alert("Wow, tough guy right here!")
+                break;
+            
+            default:
+                window.alert("You need to choose!");
+
+                //call to shop again
+                shop();
+                break;
+        }
     };
 startGame();
 
