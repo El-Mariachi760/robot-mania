@@ -1,27 +1,39 @@
 
+var fightOrSkip = function() {
+    // ask player if they'd like to fight or skip using fightOrSkip function
+    var promptFight = window.prompt('Do you have the GEARS to be the ultimate Mecha!? Enter "YES" or "NO"');
+
+    promptFight = promptFight.toLocaleLowerCase();
+  
+    // Enter the conditional recursive function call here!
+  
+    // if player picks "skip" confirm and then stop the loop
+    if (promptFight === "no") {
+      // confirm player wants to skip
+      var confirmSkip = window.confirm("Are you sure you want to be a human about it?");
+  
+      // if yes (true), leave fight
+      if (confirmSkip) {
+        window.alert(playerInfo.name + " is a typical human. BYE LOSER");
+        // subtract money from playerMoney for skipping
+        playerInfo.money = Math.max(0, playerInfo.money - 10);
+        return true;
+      }
+    }
+    if (promptFight === " " || promptFight === null) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+      }
+  }
 
 var fight = function(enemy) {
     console.log(enemy);
     //Alert all players that they are starting a new round
     while(playerInfo.health > 0 && enemy.health > 0) {
-    var promptFight = window.prompt("Do you have the GEARS to be the ultimate Mecha!? Enter 'YES' or 'NO'");
-    
-    
-        // if player choses to skip
-    if (promptFight === "no" || promptFight === "NO") {
-        //confirm player wants to skip
-       var confirmSkip = window.confirm("Are you sure you want to be a human about it?");
-
-        //if yes (true), leave fight
-        if (confirmSkip) {
-            window.alert(playerInfo.name + " is a typical human. BYE LOSER");
-            // subtract money from playerInfo.money for skipping
-            playerInfo.money = Math.max(0, playerInfo.money - 10);
-            console.log("playerInfo.money", playerInfo.money);
-            break;
-        }
+    if (fightOrSkip()) {
+        break;
     }
-
+    
     //Subtract the value of 'playerInfo.attack' from the value of 'enemy.health' and use the result to update the value in the 'enemy.health' variable
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
     
@@ -123,19 +135,17 @@ var startGame = function() {
             "How about OIL for the rusty parts, UPGRADE to your attack, or LEAVE if you are don't need anything? Please enter 'OIL', 'UPGRADE' or 'LEAVE'"
         );
 
+        shopOptionPrompt = parseInt(shopOptionPrompt);
         switch (shopOptionPrompt) {
-            case "OIL":
-            case 'oil':
+            case 1:
                 playerInfo.refillHealth();
                 break;
 
-            case "UPGRADE":
-            case "upgrade":
+            case 2:
                 playerInfo.upgradeAttack();
                 break;
 
-            case "LEAVE":
-            case "leave":
+            case 3:
                 window.alert("Wow, tough guy right here!")
                 break;
             
