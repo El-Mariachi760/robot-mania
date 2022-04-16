@@ -26,13 +26,22 @@ var fightOrSkip = function() {
       }
   }
 
+
 var fight = function(enemy) {
     console.log(enemy);
+
+    var isPlayerTurn = true;
+
+if (Math.random() > 0.5) {
+    isPlayerTurn = false;
+};
+
     //Alert all players that they are starting a new round
     while(playerInfo.health > 0 && enemy.health > 0) {
-    if (fightOrSkip()) {
-        break;
-    }
+        if (isPlayerTurn) {
+        if (fightOrSkip()) {
+            break;
+        }
     
     //Subtract the value of 'playerInfo.attack' from the value of 'enemy.health' and use the result to update the value in the 'enemy.health' variable
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
@@ -67,6 +76,10 @@ var fight = function(enemy) {
     }   else {
         window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
     }
+    }
+    // switch turn order for next round
+    isPlayerTurn = !isPlayerTurn;
+
     }
 };
 
