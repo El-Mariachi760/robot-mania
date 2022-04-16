@@ -132,7 +132,7 @@ var startGame = function() {
         //ask player that they would like
 
         var shopOptionPrompt = window.prompt(
-            "How about OIL for the rusty parts, UPGRADE to your attack, or LEAVE if you are don't need anything? Please enter 'OIL', 'UPGRADE' or 'LEAVE'"
+            "How about 1OIL for the rusty parts, 2UPGRADE to your attack, or 3LEAVE if you are don't need anything? Please enter '1', '2' or '3'"
         );
 
         shopOptionPrompt = parseInt(shopOptionPrompt);
