@@ -109,7 +109,7 @@ var startGame = function() {
                 startGame();
             }
             else {
-                window.alert("Of couse you give up, you might as well be a human")
+                window.alert("BYE LOSER!")
             }
         }
         
@@ -153,9 +153,19 @@ var startGame = function() {
 
         return value;
     };
+    var getPlayerName = function () {
+        var name = "";
 
+        while (name === "" || name === null) {
+            name = prompt("Name your Mech");
+        }
+
+
+        console.log("Your robot's name is " + name)
+        return name;
+    };
     var playerInfo = {
-        name: window.prompt("Name Your Mech"),
+        name: getPlayerName(),
         health: 100,
         attack: 10,
         money: 10,
