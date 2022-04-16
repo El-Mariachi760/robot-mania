@@ -121,12 +121,23 @@ var startGame = function() {
   
         var endGame = function() {
             // if player is still alive, player wins!
-            if (playerInfo.health > 0) {
-                window.alert("I guess you're not human after all, you are the Mech Master!")
+            
+            var highScore = localStorage.getItem("highscore");
+            
+            if (highScore === null) {
+              highScore = 0;
             }
+            // if player has more money than the high score, player has new high score!
+            if (playerInfo.money > highScore) {
+              localStorage.setItem("highscore", playerInfo.money);
+              localStorage.setItem("name", playerInfo.name);
+          
+              alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!");
+            } 
             else {
-                window.alert("You fight like a human, no wonder you are a pile of junk.")
+              alert(playerInfo.name + " did not beat the high score of " + highScore + ". What a failure!");
             }
+
             var playAgainConfirm = window.confirm("Would you like to play again?");
         
             if (playAgainConfirm) {
@@ -145,7 +156,7 @@ var startGame = function() {
         //ask player that they would like
 
         var shopOptionPrompt = window.prompt(
-            "How about 1OIL for the rusty parts, 2UPGRADE to your attack, or 3LEAVE if you are don't need anything? Please enter '1', '2' or '3'"
+            "How about 1.OIL for the rusty parts, 2.UPGRADE to your attack, or 3.LEAVE if you are don't need anything? Please enter '1', '2' or '3'"
         );
 
         shopOptionPrompt = parseInt(shopOptionPrompt);
