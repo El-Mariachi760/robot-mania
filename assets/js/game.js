@@ -3,7 +3,7 @@ var fightOrSkip = function() {
     // ask player if they'd like to fight or skip using fightOrSkip function
     var promptFight = window.prompt('Do you have the GEARS to be the ultimate Mecha!? Enter "YES" or "NO"');
 
-    promptFight = promptFight.toLocaleLowerCase();
+    promptFight = promptFight.toLowerCase();
   
     // Enter the conditional recursive function call here!
   
